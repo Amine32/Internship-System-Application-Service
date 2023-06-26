@@ -5,10 +5,8 @@ import org.springframework.web.bind.annotation.*;
 import ru.tsu.hits.internshipapplication.dto.ApplicationDto;
 import ru.tsu.hits.internshipapplication.service.ApplicationService;
 
-import java.util.List;
-
 @RestController
-@RequestMapping("/application")
+@RequestMapping("/api/application")
 @RequiredArgsConstructor
 public class ApplicationController {
 

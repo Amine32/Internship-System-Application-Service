@@ -7,8 +7,6 @@ import org.springframework.web.multipart.MultipartFile;
 import ru.tsu.hits.internshipapplication.dto.StudentDto;
 import ru.tsu.hits.internshipapplication.service.StudentService;
 
-import javax.servlet.http.HttpServletRequest;
-
 @RestController
 @RequestMapping("/api/students")
 @RequiredArgsConstructor
