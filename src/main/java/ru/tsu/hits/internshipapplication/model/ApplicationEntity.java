@@ -1,7 +1,6 @@
 package ru.tsu.hits.internshipapplication.model;
 
 import lombok.Data;
-import ru.tsu.hits.userservice.model.UserEntity;
 
 import javax.persistence.*;
 import java.util.List;
@@ -26,6 +25,6 @@ public class ApplicationEntity {
     @Enumerated(EnumType.STRING)
     private List<Status> status;
 
-    @OneToMany(mappedBy = "application", cascade = CascadeType.ALL)
-    private List<UserEntity> interviewers;
+    @OneToMany(mappedBy = "application")
+    private List<InterviewEntity> interviews;
 }

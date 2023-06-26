@@ -19,13 +19,13 @@ public class ApplicationController {
         return applicationService.createApplication(internship_id);
     }
 
-    @GetMapping()
-    public List<ApplicationDto> getApplicationsByStudent(){
-        return applicationService.getApplicationsByStudent();
-    }
-
     @GetMapping("/{application_id}")
     public ApplicationDto getApplicationById(@PathVariable String application_id) {
-        return applicationService.getApplicationById(application_id);
+        return applicationService.getApplicationDtoById(application_id);
+    }
+
+    @PostMapping("/{application_id}/status/{status}")
+    public ApplicationDto addStatus(@PathVariable String application_id, @PathVariable String status) {
+        return applicationService.addStatus(application_id, status);
     }
 }

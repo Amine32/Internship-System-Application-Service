@@ -14,9 +14,9 @@ public class StudentProfile {
     @Id
     private String id;
 
-    private String resume;
+    @Lob
+    private byte[] resume;
 
     @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
-    private List<ApplicationEntity> interviews;
-
+    private List<ApplicationEntity> applications;
 }

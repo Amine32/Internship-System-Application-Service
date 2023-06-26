@@ -13,7 +13,7 @@ public class InterviewEntity {
     @Id
     private String id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "application_id")
     private ApplicationEntity application;
 
