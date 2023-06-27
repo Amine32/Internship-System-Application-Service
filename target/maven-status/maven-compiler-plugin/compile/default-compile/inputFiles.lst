@@ -9,9 +9,7 @@ C:\Users\Amine\IdeaProjects\Internship-System\Internship-Application\src\main\ja
 C:\Users\Amine\IdeaProjects\Internship-System\Internship-Application\src\main\java\ru\tsu\hits\internshipapplication\controller\StudentController.java
 C:\Users\Amine\IdeaProjects\Internship-System\Internship-Application\src\main\java\ru\tsu\hits\internshipapplication\configuration\CorsConfig.java
 C:\Users\Amine\IdeaProjects\Internship-System\Internship-Application\src\main\java\ru\tsu\hits\internshipapplication\configuration\SwaggerConfig.java
-C:\Users\Amine\IdeaProjects\Internship-System\Internship-Application\src\main\java\ru\tsu\hits\internshipapplication\security\UserPrincipal.java
 C:\Users\Amine\IdeaProjects\Internship-System\Internship-Application\src\main\java\ru\tsu\hits\internshipapplication\repository\ApplicationRepository.java
-C:\Users\Amine\IdeaProjects\Internship-System\Internship-Application\src\main\java\ru\tsu\hits\internshipapplication\security\JwtUtil.java
 C:\Users\Amine\IdeaProjects\Internship-System\Internship-Application\src\main\java\ru\tsu\hits\internshipapplication\service\InterviewService.java
 C:\Users\Amine\IdeaProjects\Internship-System\Internship-Application\src\main\java\ru\tsu\hits\internshipapplication\repository\InterviewRepository.java
 C:\Users\Amine\IdeaProjects\Internship-System\Internship-Application\src\main\java\ru\tsu\hits\internshipapplication\dto\converter\InterviewDtoConverter.java
@@ -22,13 +20,11 @@ C:\Users\Amine\IdeaProjects\Internship-System\Internship-Application\src\main\ja
 C:\Users\Amine\IdeaProjects\Internship-System\Internship-Application\src\main\java\ru\tsu\hits\internshipapplication\controller\InterviewController.java
 C:\Users\Amine\IdeaProjects\Internship-System\Internship-Application\src\main\java\ru\tsu\hits\internshipapplication\controller\ApplicationController.java
 C:\Users\Amine\IdeaProjects\Internship-System\Internship-Application\src\main\java\ru\tsu\hits\internshipapplication\dto\UserSecurityDto.java
-C:\Users\Amine\IdeaProjects\Internship-System\Internship-Application\src\main\java\ru\tsu\hits\internshipapplication\service\CustomUserDetailsService.java
 C:\Users\Amine\IdeaProjects\Internship-System\Internship-Application\src\main\java\ru\tsu\hits\internshipapplication\dto\CreateUpdateInterviewDto.java
 C:\Users\Amine\IdeaProjects\Internship-System\Internship-Application\src\main\java\ru\tsu\hits\internshipapplication\repository\StudentRepository.java
 C:\Users\Amine\IdeaProjects\Internship-System\Internship-Application\src\main\java\ru\tsu\hits\internshipapplication\exception\InterviewNotFoundException.java
 C:\Users\Amine\IdeaProjects\Internship-System\Internship-Application\src\main\java\ru\tsu\hits\internshipapplication\dto\converter\ApplicationDtoConverter.java
 C:\Users\Amine\IdeaProjects\Internship-System\Internship-Application\src\main\java\ru\tsu\hits\internshipapplication\dto\StudentDto.java
-C:\Users\Amine\IdeaProjects\Internship-System\Internship-Application\src\main\java\ru\tsu\hits\internshipapplication\repository\ProcessedEventRepository.java
 C:\Users\Amine\IdeaProjects\Internship-System\Internship-Application\src\main\java\ru\tsu\hits\internshipapplication\service\ApplicationService.java
 C:\Users\Amine\IdeaProjects\Internship-System\Internship-Application\src\main\java\ru\tsu\hits\internshipapplication\dto\InterviewDto.java
 C:\Users\Amine\IdeaProjects\Internship-System\Internship-Application\src\main\java\ru\tsu\hits\internshipapplication\security\SecurityConfig.java
