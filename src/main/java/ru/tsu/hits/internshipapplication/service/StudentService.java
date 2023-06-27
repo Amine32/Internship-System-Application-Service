@@ -1,7 +1,6 @@
 package ru.tsu.hits.internshipapplication.service;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,20 +12,16 @@ import ru.tsu.hits.internshipapplication.dto.StudentDto;
 import ru.tsu.hits.internshipapplication.dto.UserIdDto;
 import ru.tsu.hits.internshipapplication.dto.converter.StudentDtoConverter;
 import ru.tsu.hits.internshipapplication.exception.StudentNotFoundException;
-import ru.tsu.hits.internshipapplication.model.ProcessedEvent;
 import ru.tsu.hits.internshipapplication.model.StudentProfile;
-import ru.tsu.hits.internshipapplication.repository.ProcessedEventRepository;
 import ru.tsu.hits.internshipapplication.repository.StudentRepository;
 
 import java.io.IOException;
-import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
 public class StudentService {
 
     private final StudentRepository studentRepository;
-    private final ProcessedEventRepository processedEventRepository;
 
     @Transactional(readOnly = true)
     public StudentDto getStudentDtoById(String id) {

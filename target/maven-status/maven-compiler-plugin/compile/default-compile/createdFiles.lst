@@ -21,7 +21,6 @@ ru\tsu\hits\internshipapplication\security\JwtUtil.class
 ru\tsu\hits\internshipapplication\exception\StudentNotFoundException.class
 ru\tsu\hits\internshipapplication\model\ApplicationEntity.class
 ru\tsu\hits\internshipapplication\dto\CreateUpdateInterviewDto.class
-ru\tsu\hits\internshipapplication\repository\ProcessedEventRepository.class
 ru\tsu\hits\internshipapplication\controller\ApplicationController.class
 ru\tsu\hits\internshipapplication\model\InterviewEntity.class
 ru\tsu\hits\internshipapplication\repository\ApplicationRepository.class
