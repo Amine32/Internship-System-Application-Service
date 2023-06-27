@@ -23,6 +23,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
@@ -62,9 +63,10 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 
                     Jws<Claims> claims = Jwts.parser().setSigningKey("secret").parseClaimsJws(jwt);
                     String username = claims.getBody().getSubject();
-                    List<GrantedAuthority> authorities = ((List<String>) claims.getBody().get("authorities"))
-                            .stream()
-                            .map(SimpleGrantedAuthority::new)
+                    List<Map<String, String>> authorityMaps = (List<Map<String, String>>) claims.getBody().get("authorities");
+
+                    List<GrantedAuthority> authorities = authorityMaps.stream()
+                            .map(map -> new SimpleGrantedAuthority(map.get("authority")))
                             .collect(Collectors.toList());
 
                     UserDetails userDetails = new SimpleUserDetails(username, authorities);
