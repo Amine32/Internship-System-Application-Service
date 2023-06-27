@@ -1,14 +1,10 @@
 package ru.tsu.hits.internshipapplication.security;
 
-import io.jsonwebtoken.ExpiredJwtException;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
-import ru.tsu.hits.internshipapplication.service.CustomUserDetailsService;
+import org.springframework.web.reactive.function.client.WebClient;
+import reactor.core.publisher.Mono;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -22,8 +18,7 @@ import java.util.List;
 @Component
 public class JwtRequestFilter extends OncePerRequestFilter {
 
-    private final JwtUtil jwtUtil;
-    private final CustomUserDetailsService userDetailsService;
+    private final WebClient.Builder webClientBuilder;
 
     private static final List<String> EXCLUDED_PATHS = Arrays.asList("/swagger-ui", "/v3/api-docs", "/swagger-ui.html", "/webjars", "/v2", "/swagger-resources");
 
@@ -36,33 +31,24 @@ public class JwtRequestFilter extends OncePerRequestFilter {
         // Skip JWT extraction and validation for excluded paths
         if (EXCLUDED_PATHS.stream().noneMatch(path::startsWith)) {
 
-            final String requestTokenHeader = request.getHeader("Authorization");
+            final String authorizationHeader = request.getHeader("Authorization");
 
-            String username = null;
-            String jwtToken = null;
+            if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
+                String jwt = authorizationHeader.substring(7);
 
-            if (requestTokenHeader != null && requestTokenHeader.startsWith("Bearer ")) {
-                jwtToken = requestTokenHeader.substring(7);
-                try {
-                    username = jwtUtil.extractUsername(jwtToken);
-                } catch (IllegalArgumentException e) {
-                    System.out.println("Unable to get JWT Token");
-                } catch (ExpiredJwtException e) {
-                    System.out.println("JWT Token has expired");
-                }
-            } else {
-                logger.warn("JWT Token does not begin with Bearer String");
-            }
+                // Call the validation endpoint
+                Boolean isValid = webClientBuilder.build()
+                        .post()
+                        .uri("https://hits-user-service.onrender.com/api/validate")
+                        .body(Mono.just(jwt), String.class)
+                        .retrieve()
+                        .bodyToMono(Boolean.class)
+                        .block();
 
-            if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-                UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
-
-                if (jwtUtil.validateToken(jwtToken, userDetails)) {
-                    UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken =
-                            new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
-                    usernamePasswordAuthenticationToken
-                            .setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-                    SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
+                if (!isValid) {
+                    // Token is not valid, reject the request
+                    response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+                    return;
                 }
             }
         }
