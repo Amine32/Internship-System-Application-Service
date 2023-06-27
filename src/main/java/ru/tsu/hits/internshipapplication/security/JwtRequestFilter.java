@@ -1,6 +1,15 @@
 package ru.tsu.hits.internshipapplication.security;
 
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jws;
+import io.jsonwebtoken.Jwts;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -12,7 +21,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Component
@@ -45,7 +56,26 @@ public class JwtRequestFilter extends OncePerRequestFilter {
                         .bodyToMono(Boolean.class)
                         .block();
 
-                if (!isValid) {
+                System.out.println("Is Boolean valid: " + isValid);
+
+                if (Boolean.TRUE.equals(isValid)) {
+
+                    Jws<Claims> claims = Jwts.parser().setSigningKey("secret").parseClaimsJws(jwt);
+                    String username = claims.getBody().getSubject();
+                    List<GrantedAuthority> authorities = ((List<String>) claims.getBody().get("authorities"))
+                            .stream()
+                            .map(SimpleGrantedAuthority::new)
+                            .collect(Collectors.toList());
+
+                    UserDetails userDetails = new SimpleUserDetails(username, authorities);
+                    UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken =
+                            new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+
+                    usernamePasswordAuthenticationToken
+                            .setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+                    SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
+                } else {
+                    System.out.println("Boolean is not valid");
                     // Token is not valid, reject the request
                     response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
                     return;
