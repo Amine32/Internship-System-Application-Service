@@ -12,18 +12,18 @@ public class ApplicationController {
 
     private final ApplicationService applicationService;
 
-    @PostMapping("/{internship_id}")
-    public ApplicationDto createApplication(@PathVariable String internship_id) {
-        return applicationService.createApplication(internship_id);
+    @PostMapping("/{positionId}")
+    public ApplicationDto createApplication(@PathVariable String positionId) {
+        return applicationService.createApplication(positionId);
     }
 
-    @GetMapping("/{application_id}")
-    public ApplicationDto getApplicationById(@PathVariable String application_id) {
-        return applicationService.getApplicationDtoById(application_id);
+    @GetMapping("/{applicationId}")
+    public ApplicationDto getApplicationById(@PathVariable String applicationId) {
+        return applicationService.getApplicationDtoById(applicationId);
     }
 
-    @PostMapping("/{application_id}/status/{status}")
-    public ApplicationDto addStatus(@PathVariable String application_id, @PathVariable String status) {
-        return applicationService.addStatus(application_id, status);
+    @PostMapping("/{applicationId}/status/{status}")
+    public ApplicationDto addStatus(@PathVariable String applicationId, @PathVariable String status) {
+        return applicationService.addStatus(applicationId, status);
     }
 }

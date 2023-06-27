@@ -25,6 +25,6 @@ public class ApplicationEntity {
     @Enumerated(EnumType.STRING)
     private List<Status> status;
 
-    @OneToMany(mappedBy = "application")
+    @OneToMany(mappedBy = "application", cascade = CascadeType.ALL)
     private List<InterviewEntity> interviews;
 }
