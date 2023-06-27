@@ -19,6 +19,16 @@ public class StudentController {
         return studentService.getStudentDtoById(id);
     }
 
+    @PostMapping("/{id}")
+    public StudentDto createStudentProfile(@PathVariable String id) {
+        return studentService.handleStudentUserCreatedEvent(id);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteStudentProfile(@PathVariable String id) {
+        studentService.handleUserDeletedEvent(id);
+    }
+
     @PostMapping("/resume")
     public ResponseEntity<String> addResume(@RequestParam("file")MultipartFile file) {
         return studentService.addResume(file);

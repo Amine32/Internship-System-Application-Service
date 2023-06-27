@@ -91,44 +91,17 @@ public class StudentService {
         studentRepository.save(student);
     }
 
-    @RabbitListener(queues = "student.user.created")
     @Transactional
-    public void handleStudentUserCreatedEvent(Map<String, String> message) {
-        String id = message.get("id");
-        String eventType = message.get("type");
-
-        //Check if this event has already been processed
-        String eventId = eventType + "-" + id;
-        if(processedEventRepository.existsById(eventId)){
-            return;
-        }
-
+    public StudentDto handleStudentUserCreatedEvent(String id) {
         StudentProfile profile = new StudentProfile();
         profile.setId(id);
         studentRepository.save(profile);
 
-        //Store the event ID to ensure it's not processed more than once
-        processedEventRepository.save(new ProcessedEvent(eventId));
+        return StudentDtoConverter.convertEntityToDto(profile);
     }
 
-    @RabbitListener(queues = "user.deleted")
     @Transactional
-    public void handleUserDeletedEvent(Map<String, String> message) {
-        String id = message.get("id");
-        String eventType = message.get("type");
-
-        //Check if this event has already been processed
-        String eventId = eventType + "-" + id;
-        if(processedEventRepository.existsById(eventId)) {
-            return;
-        }
-
-        //Create a new StudentProfile and save it to the database
-        StudentProfile profile = new StudentProfile();
-        profile.setId(id);
-        studentRepository.save(profile);
-
-        //Store the event ID to ensure it's not processed more than once
-        processedEventRepository.save(new ProcessedEvent(eventId));
+    public void handleUserDeletedEvent(String id) {
+        studentRepository.deleteById(id);
     }
 }

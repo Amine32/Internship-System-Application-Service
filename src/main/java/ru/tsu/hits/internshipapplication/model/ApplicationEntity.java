@@ -13,7 +13,7 @@ public class ApplicationEntity {
     @Id
     private String id;
 
-    private String position_id;
+    private String positionId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "student_id")

@@ -5,8 +5,10 @@ import org.springframework.web.bind.annotation.*;
 import ru.tsu.hits.internshipapplication.dto.ApplicationDto;
 import ru.tsu.hits.internshipapplication.service.ApplicationService;
 
+import java.util.List;
+
 @RestController
-@RequestMapping("/api/application")
+@RequestMapping("/api/applications")
 @RequiredArgsConstructor
 public class ApplicationController {
 
@@ -25,5 +27,10 @@ public class ApplicationController {
     @PostMapping("/{applicationId}/status/{status}")
     public ApplicationDto addStatus(@PathVariable String applicationId, @PathVariable String status) {
         return applicationService.addStatus(applicationId, status);
+    }
+
+    @GetMapping("/position/{positionId}")
+    public List<ApplicationDto> getAllByPositionId(@PathVariable String positionId) {
+        return applicationService.getAllByPositionId(positionId);
     }
 }

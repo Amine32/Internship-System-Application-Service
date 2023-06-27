@@ -9,7 +9,7 @@ public class ApplicationDto {
 
     private String id;
 
-    private String position_id;
+    private String positionId;
 
     private List<String> status;
 

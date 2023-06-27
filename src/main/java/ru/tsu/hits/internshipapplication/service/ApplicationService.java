@@ -14,6 +14,7 @@ import ru.tsu.hits.internshipapplication.repository.ApplicationRepository;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -27,7 +28,7 @@ public class ApplicationService {
         ApplicationEntity application = new ApplicationEntity();
 
         application.setId(UUID.randomUUID().toString());
-        application.setPosition_id(positionId);
+        application.setPositionId(positionId);
 
         List<Status> statuses = new ArrayList<>();
         statuses.add(Status.NEW);
@@ -68,5 +69,13 @@ public class ApplicationService {
         application = applicationRepository.save(application);
 
         return ApplicationDtoConverter.convertEntityToDto(application);
+    }
+
+    public List<ApplicationDto> getAllByPositionId(String positionId) {
+        List<ApplicationEntity> applications = applicationRepository.findAllByPositionId(positionId);
+
+        return applications.stream()
+                .map(ApplicationDtoConverter::convertEntityToDto)
+                .collect(Collectors.toList());
     }
 }
