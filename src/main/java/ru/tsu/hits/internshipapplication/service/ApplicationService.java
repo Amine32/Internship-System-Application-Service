@@ -101,4 +101,8 @@ public class ApplicationService {
         // Assuming applicationRepository is an instance of JpaRepository or CrudRepository
         application = applicationRepository.save(application);
     }
+
+    public void deleteApplicationById(String applicationId) {
+        applicationRepository.deleteById(applicationId);
+    }
 }

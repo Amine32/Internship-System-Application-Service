@@ -1,7 +1,6 @@
 ru\tsu\hits\internshipapplication\configuration\CorsConfig.class
 ru\tsu\hits\internshipapplication\controller\StudentController.class
 ru\tsu\hits\internshipapplication\exception\InterviewNotFoundException.class
-ru\tsu\hits\internshipapplication\model\ProcessedEvent.class
 ru\tsu\hits\internshipapplication\dto\converter\InterviewDtoConverter.class
 ru\tsu\hits\internshipapplication\repository\InterviewRepository.class
 ru\tsu\hits\internshipapplication\dto\UserSecurityDto.class

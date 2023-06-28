@@ -15,5 +15,5 @@ public class ApplicationDto {
 
     private List<String> status;
 
-    private List<InterviewDto> interview;
+    private List<InterviewDto> interviews;
 }
