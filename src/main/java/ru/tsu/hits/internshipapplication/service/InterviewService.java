@@ -28,6 +28,8 @@ public class InterviewService {
 
         interviewEntity = interviewRepository.save(interviewEntity);
 
+        applicationService.addInterview(applicationId, interviewEntity);
+
         return InterviewDtoConverter.convertEntityToDto(interviewEntity);
     }
 
