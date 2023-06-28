@@ -21,7 +21,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -32,7 +31,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 
     private final WebClient.Builder webClientBuilder;
 
-    private static final List<String> EXCLUDED_PATHS = Arrays.asList("/swagger-ui", "/v3/api-docs", "/swagger-ui.html", "/webjars", "/v2", "/swagger-resources");
+    private static final List<String> EXCLUDED_PATHS = Arrays.asList("/api/students/{id}", "/swagger-ui", "/v3/api-docs", "/swagger-ui.html", "/webjars", "/v2", "/swagger-resources");
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
