@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.tsu.hits.internshipapplication.dto.ApplicationDto;
-import ru.tsu.hits.internshipapplication.dto.InterviewDto;
 import ru.tsu.hits.internshipapplication.dto.converter.ApplicationDtoConverter;
 import ru.tsu.hits.internshipapplication.exception.ApplicationNotFoundException;
 import ru.tsu.hits.internshipapplication.model.ApplicationEntity;
@@ -99,7 +98,7 @@ public class ApplicationService {
         application.setInterviews(interviews);
 
         // Assuming applicationRepository is an instance of JpaRepository or CrudRepository
-        application = applicationRepository.save(application);
+        applicationRepository.save(application);
     }
 
     public void deleteApplicationById(String applicationId) {

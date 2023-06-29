@@ -7,6 +7,7 @@ import ru.tsu.hits.internshipapplication.model.ApplicationEntity;
 import ru.tsu.hits.internshipapplication.model.InterviewEntity;
 import ru.tsu.hits.internshipapplication.model.Status;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,9 +25,16 @@ public class ApplicationDtoConverter {
         dto.setStatus(russianStatusList);
 
         List<InterviewEntity> interviews = application.getInterviews();
-        List<InterviewDto> interviewDtos = interviews.stream()
-                .map(InterviewDtoConverter::convertEntityToDto)
-                .collect(Collectors.toList());
+        List<InterviewDto> interviewDtos;
+
+        if (interviews != null) {
+            interviewDtos = interviews.stream()
+                    .map(InterviewDtoConverter::convertEntityToDto)
+                    .collect(Collectors.toList());
+        } else {
+            interviewDtos = new ArrayList<>();
+        }
+
         dto.setInterviews(interviewDtos);
 
         return dto;

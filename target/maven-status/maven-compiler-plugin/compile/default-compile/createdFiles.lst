@@ -4,6 +4,7 @@ ru\tsu\hits\internshipapplication\exception\InterviewNotFoundException.class
 ru\tsu\hits\internshipapplication\dto\converter\InterviewDtoConverter.class
 ru\tsu\hits\internshipapplication\repository\InterviewRepository.class
 ru\tsu\hits\internshipapplication\dto\UserSecurityDto.class
+ru\tsu\hits\internshipapplication\controller\CustomExceptionHandler.class
 ru\tsu\hits\internshipapplication\security\JwtRequestFilter.class
 ru\tsu\hits\internshipapplication\service\StudentService.class
 ru\tsu\hits\internshipapplication\exception\ApplicationNotFoundException.class

@@ -56,8 +56,6 @@ public class JwtRequestFilter extends OncePerRequestFilter {
                         .bodyToMono(Boolean.class)
                         .block();
 
-                System.out.println("Is Boolean valid: " + isValid);
-
                 if (Boolean.TRUE.equals(isValid)) {
 
                     Jws<Claims> claims = Jwts.parser().setSigningKey("secret").parseClaimsJws(jwt);
@@ -76,7 +74,6 @@ public class JwtRequestFilter extends OncePerRequestFilter {
                             .setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                     SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
                 } else {
-                    System.out.println("Boolean is not valid");
                     // Token is not valid, reject the request
                     response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
                     return;
