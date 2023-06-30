@@ -4,11 +4,14 @@ C:\Users\Amine\IdeaProjects\Internship-System\Internship-Application\src\main\ja
 C:\Users\Amine\IdeaProjects\Internship-System\Internship-Application\src\main\java\ru\tsu\hits\internshipapplication\model\ApplicationEntity.java
 C:\Users\Amine\IdeaProjects\Internship-System\Internship-Application\src\main\java\ru\tsu\hits\internshipapplication\security\JwtRequestFilter.java
 C:\Users\Amine\IdeaProjects\Internship-System\Internship-Application\src\main\java\ru\tsu\hits\internshipapplication\model\StudentProfile.java
+C:\Users\Amine\IdeaProjects\Internship-System\Internship-Application\src\main\java\ru\tsu\hits\internshipapplication\dto\WorkPlaceDto.java
 C:\Users\Amine\IdeaProjects\Internship-System\Internship-Application\src\main\java\ru\tsu\hits\internshipapplication\InternshipApplication.java
 C:\Users\Amine\IdeaProjects\Internship-System\Internship-Application\src\main\java\ru\tsu\hits\internshipapplication\model\InterviewEntity.java
 C:\Users\Amine\IdeaProjects\Internship-System\Internship-Application\src\main\java\ru\tsu\hits\internshipapplication\controller\StudentController.java
 C:\Users\Amine\IdeaProjects\Internship-System\Internship-Application\src\main\java\ru\tsu\hits\internshipapplication\configuration\CorsConfig.java
+C:\Users\Amine\IdeaProjects\Internship-System\Internship-Application\src\main\java\ru\tsu\hits\internshipapplication\dto\PositionInfoDto.java
 C:\Users\Amine\IdeaProjects\Internship-System\Internship-Application\src\main\java\ru\tsu\hits\internshipapplication\configuration\SwaggerConfig.java
+C:\Users\Amine\IdeaProjects\Internship-System\Internship-Application\src\main\java\ru\tsu\hits\internshipapplication\controller\CustomExceptionHandler.java
 C:\Users\Amine\IdeaProjects\Internship-System\Internship-Application\src\main\java\ru\tsu\hits\internshipapplication\repository\ApplicationRepository.java
 C:\Users\Amine\IdeaProjects\Internship-System\Internship-Application\src\main\java\ru\tsu\hits\internshipapplication\service\InterviewService.java
 C:\Users\Amine\IdeaProjects\Internship-System\Internship-Application\src\main\java\ru\tsu\hits\internshipapplication\repository\InterviewRepository.java

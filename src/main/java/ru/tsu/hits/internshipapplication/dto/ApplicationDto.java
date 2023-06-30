@@ -16,4 +16,8 @@ public class ApplicationDto {
     private List<String> status;
 
     private List<InterviewDto> interviews;
+
+    private String position;
+
+    private String companyName;
 }
