@@ -38,10 +38,10 @@ public class JwtRequestFilter extends OncePerRequestFilter {
             throws ServletException, IOException {
 
         String path = request.getRequestURI();
+        String method = request.getMethod();
 
         // Skip JWT extraction and validation for excluded paths
-        if (EXCLUDED_PATHS.stream().noneMatch(path::startsWith)) {
-
+        if (!isExcluded(path, method)) {
             final String authorizationHeader = request.getHeader("Authorization");
 
             if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
@@ -82,5 +82,21 @@ public class JwtRequestFilter extends OncePerRequestFilter {
         }
 
         chain.doFilter(request, response);
+    }
+
+    private boolean isExcluded(String path, String method) {
+        // Exclude only POST requests to "/api/students/"
+        if (path.startsWith("/api/students/") && "POST".equalsIgnoreCase(method)) {
+            return true;
+        }
+
+        // Exclude other paths for all methods
+        for (String excludedPath : EXCLUDED_PATHS) {
+            if (path.startsWith(excludedPath)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
